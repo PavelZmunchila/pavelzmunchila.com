@@ -41,14 +41,17 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .grid-item:hover img{opacity:.7}
 .grid-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.9));padding:24px 10px 8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .2s}
 .grid-item:hover .grid-label{opacity:1}
-.detail-view{display:none;padding:32px 40px 60px}
+.detail-view{display:none;padding:32px 32px 60px}
 .detail-view.visible{display:block}
 .detail-title{font-size:14px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
 .detail-meta{font-size:11px;color:var(--muted);letter-spacing:.06em;margin-bottom:22px}
-.detail-description{font-size:12.5px;line-height:1.8;max-width:500px;color:#bbb;margin-bottom:26px}
+.detail-description{font-size:12.5px;line-height:1.8;max-width:340px;color:#bbb;margin-bottom:26px}
 .detail-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:30px}
 .tag{padding:4px 10px;border:1px solid #282828;font-size:10px;letter-spacing:.08em;color:var(--muted)}
-.detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.detail-layout{display:flex;gap:40px;align-items:flex-start}
+.detail-left{width:340px;min-width:340px;flex-shrink:0}
+.detail-right{flex:1;min-width:0}
+.detail-media{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
 .detail-media img{width:100%;display:block;object-fit:cover;aspect-ratio:4/3;background:var(--surface)}
 .detail-media img.span2{grid-column:span 2;aspect-ratio:16/9}
 #tab-4x10{flex-direction:column;padding:48px 52px;gap:20px;overflow-y:auto}
@@ -181,7 +184,7 @@ function buildSection(type,items){
   const grid=document.getElementById(type+'-grid');
   items.forEach(item=>{
     const btn=document.createElement('button');
-    btn.className='split-item';btn.textContent=item.title;btn.dataset.id=item.id;
+    btn.className='split-item';btn.textContent=item.title.replace(' [SETUP]','');btn.dataset.id=item.id;
     btn.addEventListener('click',()=>showDetail(type,item.id));
     sidebar.appendChild(btn);
     const thumb=item.media[0]||'';
@@ -202,7 +205,7 @@ function showDetail(type,id){
   detail.classList.add('visible');
   const tags=item.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
   const mediaHTML=item.media.map((src,i)=>'<img class="'+(i===0&&item.media.length>1?'span2':'')+'" src="'+src+'" alt="" loading="lazy" onerror="this.style.background=\'#181818\';this.removeAttribute(\'src\')">').join('');
-  detail.innerHTML='<div class="detail-title">'+item.title+'</div>'+(item.meta?'<div class="detail-meta">'+item.meta+'</div>':'')+'<p class="detail-description">'+item.description+'</p>'+(tags?'<div class="detail-tags">'+tags+'</div>':'')+'<div class="detail-media">'+mediaHTML+'</div>';
+  detail.innerHTML='<div class="detail-layout"><div class="detail-left"><div class="detail-title">'+item.title+'</div>'+(item.meta?'<div class="detail-meta">'+item.meta+'</div>':'')+'<p class="detail-description">'+item.description+'</p>'+(tags?'<div class="detail-tags">'+tags+'</div>':'')+'</div><div class="detail-right"><div class="detail-media">'+mediaHTML+'</div></div></div>';
   document.getElementById(type+'-content').scrollTop=0;
 }
 
