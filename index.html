@@ -80,7 +80,7 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 </header>
 <main>
   <div class="tab-panel" id="tab-about">
-    <img class="about-photo" src="media/about/portrait.webp" alt="Pavel Zmunchila" onerror="this.style.background='#1a1a1a';this.removeAttribute('src')">
+    <img class="about-photo" src="media/about/ABOUT%20Pavel%20Zmunchila.webp" alt="Pavel Zmunchila" onerror="this.style.background='#1a1a1a';this.removeAttribute('src')">
     <div class="about-text">
       <h2>Pavel Zmunchila</h2>
       <p class="about-subtitle">Stage Designer | Lighting Artist | Creative Coder</p>
@@ -114,11 +114,14 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
     </div>
   </div>
   <div class="tab-panel" id="tab-4x10">
-    <div>
-      <h2>4x10.dev</h2>
-      <p>My years of R&amp;D and constant search for new creative tools have led me to a new chapter — the creation of 4x10.dev, a brand building AI-powered tools that enhance existing workflows with solutions tailored to real creative needs, streamlining show programming and reducing production time.</p>
-      <p>The system simplifies lighting programming and calibration, automates timeline creation, and improves workflows for professionals while making it easier for beginners. Based on advanced audio analysis, automated timelines, and an algorithmic approach to lighting control, it offers a smarter way to program a show.</p>
-      <a href="https://4x10.dev" target="_blank">&#8594; Visit 4x10.dev</a>
+    <div class="split-layout">
+      <div class="split-content" id="fourk-content" style="overflow-y:auto;padding:32px 40px 60px">
+        <div class="detail-title" style="margin-bottom:16px">4x10.dev</div>
+        <p class="detail-description">My years of R&amp;D and constant search for new creative tools have led me to a new chapter — the creation of 4x10.dev, a brand building AI-powered tools that enhance existing workflows with solutions tailored to real creative needs, streamlining show programming and reducing production time.</p>
+        <p class="detail-description">The system simplifies lighting programming and calibration, automates timeline creation, and improves workflows for professionals while making it easier for beginners. Based on advanced audio analysis, automated timelines, and an algorithmic approach to lighting control, it offers a smarter way to program a show.</p>
+        <a href="https://4x10.dev" target="_blank" style="font-size:12px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--muted);padding-bottom:1px;letter-spacing:.08em;display:inline-block;margin-bottom:30px">&#8594; Visit 4x10.dev</a>
+        <div class="detail-media" id="fourk-media"></div>
+      </div>
     </div>
   </div>
   <div class="tab-panel" id="tab-contacts">
@@ -140,7 +143,7 @@ const PROJECTS=[
 {id:'ninakraviz',title:'NINA KRAVIZ',meta:'Moscow — 2021',description:'A cylindrical portal of pixel LED rods wraps the DJ booth, its ribbed structure forming a turbine-like shell. Thousands of mapped diodes pulse in concentric waves, while a central laser projects axial beams—shifting from a pinpoint to a widening fan that cuts through haze.',tags:['Creative Direction','GrandMA','Stage Design','Realtime Content','Concept Author','Touchdesigner','Control System','Show Operator'],media:p('nina_kraviz',['image-1c199ea2-c85a-4c14-bcfb-da71bb810b48.webp','image-69b42a81-8fc1-432f-884e-447607b54ca2.webp','image-d8464a8f-d5f7-4bea-8ccc-8172deaffe68.webp','image-e58784b5-06ad-49cf-b9a6-11e469f62a3e.webp'])},
 {id:'memory',title:'MEMORY',meta:'N. Novgorod — 2024',description:'A transparent pillar of LED mesh levitates above a square plinth, glowing like a digital reliquary. Each layer fades independently, giving the illusion of infinite depth in a single, glass-clear column.',tags:['Control System','Creative Direction','Realtime Content','Concept Author','Stage Design','Touchdesigner','Lighting Design'],media:p('memory',['Image-9b9bdbe4-a750-4aff-ba63-7b4283e6557f.gif','Image-173f5535-36d5-4d69-b040-66c55d759c7d.gif','image-33822a07-6b76-4e35-890b-169604f4b791.webp'])},
 {id:'rhcp',title:'RHCP',meta:'Worldwide — 2022–2024',description:'A custom real-time engine drives molten, physics-based visuals across towering wrap-around LED wings. All content is generated and operated in real time, the life-driven system melting the visuals, light and music.',tags:['Creative Direction','GrandMA','Stage Design','Control System','Realtime Content','Touchdesigner','Show Operator'],media:p('rhcp',['image-4b9774b7-3980-4d9f-a3f9-f374ea9bd1aa.webp','image-50060325-ea52-49e8-bb21-b0409e9fe977.webp','image-7b13d39c-d528-4c0a-9cc8-92a49e3427bd.webp','image-dab7b23f-3ed4-45fc-94d0-37d7e0554cde.webp','image-fc6d54fa-31e4-4b9d-8d0b-0dcea3841cbf.webp'])},
-{id:'extrema',title:'EXTREMA',meta:'Antwerp — 2022',description:'A cathedral-scale V of LED mesh spans above 15,000 attendees, its planes angled like a razor poised above the floor. EXTREMA transforms the warehouse rave into an industrial ritual.',tags:['Creative Direction','Lighting Design','Control System','Realtime Content','Concept Author','GrandMA','Stage Design','Touchdesigner'],media:p('extrema',['Image-dcaaab27-9c61-4ffa-bd71-fe4776d8d1a0.gif'])},
+{id:'extrema',title:'EXTREMA',meta:'Antwerp — 2022',description:'A cathedral-scale V of LED mesh spans above 15,000 attendees, its planes angled like a razor poised above the floor. EXTREMA transforms the warehouse rave into an industrial ritual.',tags:['Creative Direction','Lighting Design','Control System','Realtime Content','Concept Author','GrandMA','Stage Design','Touchdesigner'],media:p('extrema',['Image-dcaaab27-9c61-4ffa-bd71-fe4776d8d1a0.gif','image-00185ea4-a74f-49c5-a8d6-439c3fe584d3.webp','image-5a2b6495-6726-4b6f-b654-eec694f99143.webp','image-7cd47da4-8f9f-4031-9fd6-cf88893b604e.webp','image-a4c99ac8-024b-4c08-9962-188bed2e0e66.webp'])},
 {id:'mahmutorhan',title:'MAHMUT ORHAN',meta:'Istanbul — 2024',description:'A 30-metre panoramic LED wall frames the DJ like a cinematic backdrop. One integrated system, one continuous surface, complete immersion.',tags:['Creative Direction','Lighting Design','Control System','Realtime Content','Concept Author','Stage Design','GrandMA','Touchdesigner'],media:p('mahmut_orhan',['Image-dbd76bfe-b599-4aa6-be49-b97aae99f15c.gif','Image-a95bb6ca-b07f-435c-8a94-962fd963c05b.gif','Image-5879c5a4-1146-42bd-b323-31d7726e5444.gif'])},
 {id:'nechto',title:'NECHTO',meta:'Kyiv — 2021',description:'The image broadcast on the LED screen wall can be deformed at any given time to look three-dimensional, achieved by reprojecting a rendered image from a camera onto the screen plane.',tags:['Creative Direction','Lighting Design','Control System','Realtime Content','Concept Author','Stage Design','GrandMA','Touchdesigner'],media:p('nechto',['Image-d2f4e41e-1a18-42f3-bfed-810250d77304.gif','Image-c626ab5a-34dd-404b-bd12-9a1a03e10ced.gif','Image-bbf5e8bc-47bb-4b48-b734-408f3f14616b.gif','image-4fad1429-5997-4e95-a6cc-9f1ef4b33a1d.webp','image-c1d214eb-47f8-4cae-bcf3-9477e1417b42.webp'])},
 {id:'sophie',title:'SOPHIE',meta:'Malaga — 2024',description:'A 14-metre LED sphere hovers above the crowd like a globe, its surface seamlessly transforming from crystalline oceans to molten cores, all rendered entirely in real time.',tags:['Creative Direction','Lighting Design','Realtime Content','Concept Author','Stage Design','Control System','GrandMA','Touchdesigner'],media:p('sophie',['Image-b80ba10f-20af-4882-9f20-16a10430bb36.gif','image-3a5ec4d0-c448-4be8-a25b-9a0adc266bb3.webp','image-4f50df7b-d3a4-4c0d-9c9c-e6bddf726493.webp','image-f5c72b16-cc62-46f9-9a29-5ea293913aae.webp'])},
@@ -220,6 +223,26 @@ document.getElementById('nav-projects').addEventListener('click',()=>showGrid('p
 document.getElementById('nav-concepts').addEventListener('click',()=>showGrid('concepts'));
 buildSection('projects',PROJECTS);
 buildSection('concepts',CONCEPTS);
+// Build 4x10 media grid
+const fourk=[
+  'Image-0573ad7d-54cd-45a0-a878-8b2f9994c226.gif',
+  'Image-30s347ca-7134-41d7-9711-1dbe4fe23.gif',
+  'Image-81d347ca-7134-41d7-9711-1dbe4fed41e4.gif',
+  'Image-9c804232-1468-4d83-a441-d11cbc197315.gif',
+  'Image-bafd40ec-1b17-4692-9499-0102b6d6dd2c.gif',
+  'Image-c7d2b8ad-72d1-4164-b6da-ee997005e0ae.gif',
+  'Image-d1b5e592-889a-4464-a054-a40ab1e41d34.gif',
+  'Image-d9d31a43-d129-40cb-99c1-1845f3507ac5.gif'
+];
+const fgrid=document.getElementById('fourk-media');
+fourk.forEach((f,i)=>{
+  const img=document.createElement('img');
+  img.src='media/4x10/'+f;
+  img.loading='lazy';
+  if(i===0)img.className='span2';
+  img.onerror=function(){this.style.background='#181818';this.removeAttribute('src');};
+  fgrid.appendChild(img);
+});
 switchTab('projects');
 </script>
 </body>
