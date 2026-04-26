@@ -65,6 +65,47 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .contact-value a:hover{border-color:var(--muted)}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--border)}
+
+@media (max-width: 768px) {
+  html,body{overflow:auto}
+  header{flex-direction:column;gap:10px;padding:14px 16px 10px}
+  nav{gap:20px;flex-wrap:wrap}
+  nav button{font-size:11px}
+  .logo-name{font-size:12px}
+  main{position:relative;top:0;bottom:auto;left:0;right:0}
+  .tab-panel{height:auto;min-height:100vh}
+  #tab-about{flex-direction:column;padding:20px 16px;gap:24px}
+  .about-photo{width:100%;min-width:unset;height:280px}
+  .about-text{max-width:100%}
+  .about-list li{font-size:11.5px}
+  .split-layout{flex-direction:column;height:auto}
+  .split-sidebar{width:100%;min-width:unset;border-right:none;border-bottom:1px solid var(--border);padding:16px 0 8px;overflow-x:auto;white-space:nowrap;display:flex;flex-direction:row;gap:0}
+  .split-sidebar::-webkit-scrollbar{display:none}
+  .split-item{display:inline-block;width:auto;padding:6px 14px;font-size:10px}
+  .split-content{overflow-y:auto}
+  .grid-view{padding:16px 12px 40px;columns:2;column-gap:4px}
+  .grid-item{margin-bottom:4px}
+  .detail-view{padding:20px 16px 40px}
+  .detail-layout{flex-direction:column;gap:20px;padding:20px 16px 40px}
+  .detail-left{width:100%;min-width:unset}
+  .detail-right{width:100%}
+  .detail-description{max-width:100%;font-size:12px}
+  .detail-media{grid-template-columns:repeat(2,1fr);gap:4px}
+  .detail-tags{gap:4px}
+  .tag{font-size:9px;padding:3px 8px}
+  #tab-4x10 .detail-layout{padding:20px 16px 40px}
+  #fourk-media{grid-template-columns:repeat(2,1fr) !important;gap:4px}
+  #tab-contacts{padding:40px 24px;gap:14px}
+  .contact-label{width:70px;font-size:9px}
+  .contact-value a{font-size:12px}
+}
+@media (max-width: 480px) {
+  nav{gap:12px}
+  nav button{font-size:10px}
+  .detail-media{grid-template-columns:1fr 1fr;gap:3px}
+  .grid-view{columns:1}
+  #fourk-media{grid-template-columns:1fr 1fr !important}
+}
 </style>
 </head>
 <body>
