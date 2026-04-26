@@ -114,11 +114,14 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
     </div>
   </div>
   <div class="tab-panel" id="tab-4x10">
-    <div>
-      <h2>4x10.dev</h2>
-      <p>My years of R&amp;D and constant search for new creative tools have led me to a new chapter — the creation of 4x10.dev, a brand building AI-powered tools that enhance existing workflows with solutions tailored to real creative needs, streamlining show programming and reducing production time.</p>
-      <p>The system simplifies lighting programming and calibration, automates timeline creation, and improves workflows for professionals while making it easier for beginners. Based on advanced audio analysis, automated timelines, and an algorithmic approach to lighting control, it offers a smarter way to program a show.</p>
-      <a href="https://4x10.dev" target="_blank">&#8594; Visit 4x10.dev</a>
+    <div class="split-layout">
+      <div class="split-content" id="fourk-content" style="overflow-y:auto;padding:32px 40px 60px">
+        <div class="detail-title" style="margin-bottom:16px">4x10.dev</div>
+        <p class="detail-description">My years of R&amp;D and constant search for new creative tools have led me to a new chapter — the creation of 4x10.dev, a brand building AI-powered tools that enhance existing workflows with solutions tailored to real creative needs, streamlining show programming and reducing production time.</p>
+        <p class="detail-description">The system simplifies lighting programming and calibration, automates timeline creation, and improves workflows for professionals while making it easier for beginners. Based on advanced audio analysis, automated timelines, and an algorithmic approach to lighting control, it offers a smarter way to program a show.</p>
+        <a href="https://4x10.dev" target="_blank" style="font-size:12px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--muted);padding-bottom:1px;letter-spacing:.08em;display:inline-block;margin-bottom:30px">&#8594; Visit 4x10.dev</a>
+        <div class="detail-media" id="fourk-media"></div>
+      </div>
     </div>
   </div>
   <div class="tab-panel" id="tab-contacts">
@@ -220,6 +223,26 @@ document.getElementById('nav-projects').addEventListener('click',()=>showGrid('p
 document.getElementById('nav-concepts').addEventListener('click',()=>showGrid('concepts'));
 buildSection('projects',PROJECTS);
 buildSection('concepts',CONCEPTS);
+// Build 4x10 media grid
+const fourk=[
+  'Image-0573ad7d-54cd-45a0-a878-8b2f9994c226.gif',
+  'Image-30s347ca-7134-41d7-9711-1dbe4fe23.gif',
+  'Image-81d347ca-7134-41d7-9711-1dbe4fed41e4.gif',
+  'Image-9c804232-1468-4d83-a441-d11cbc197315.gif',
+  'Image-bafd40ec-1b17-4692-9499-0102b6d6dd2c.gif',
+  'Image-c7d2b8ad-72d1-4164-b6da-ee997005e0ae.gif',
+  'Image-d1b5e592-889a-4464-a054-a40ab1e41d34.gif',
+  'Image-d9d31a43-d129-40cb-99c1-1845f3507ac5.gif'
+];
+const fgrid=document.getElementById('fourk-media');
+fourk.forEach((f,i)=>{
+  const img=document.createElement('img');
+  img.src='media/4x10/'+f;
+  img.loading='lazy';
+  if(i===0)img.className='span2';
+  img.onerror=function(){this.style.background='#181818';this.removeAttribute('src');};
+  fgrid.appendChild(img);
+});
 switchTab('projects');
 </script>
 </body>
