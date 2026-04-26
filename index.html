@@ -52,8 +52,7 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .detail-left{width:340px;min-width:340px;flex-shrink:0}
 .detail-right{flex:1;min-width:0}
 .detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.media-cell{aspect-ratio:1/1;overflow:hidden;background:var(--surface)}
-.media-cell img{width:100%;height:100%;object-fit:cover;display:block}
+.detail-media img{width:100%;display:block;background:var(--surface)}
 
 #tab-4x10{flex-direction:column;padding:48px 52px;gap:20px;overflow-y:auto}
 #tab-4x10 h2{font-size:14px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
@@ -205,7 +204,7 @@ function showDetail(type,id){
   const detail=document.getElementById(type+'-detail');
   detail.classList.add('visible');
   const tags=item.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
-  const mediaHTML=item.media.map(src=>'<div class="media-cell"><img src="'+src+'" alt="" loading="lazy"></div>').join('');
+  const mediaHTML=item.media.map(src=>'<img src="'+src+'" alt="" loading="lazy" onerror="this.style.background=\'#181818\'">').join('');
   detail.innerHTML='<div class="detail-layout"><div class="detail-left"><div class="detail-title">'+item.title+'</div>'+(item.meta?'<div class="detail-meta">'+item.meta+'</div>':'')+'<p class="detail-description">'+item.description+'</p>'+(tags?'<div class="detail-tags">'+tags+'</div>':'')+'</div><div class="detail-right"><div class="detail-media">'+mediaHTML+'</div></div></div>';
   document.getElementById(type+'-content').scrollTop=0;
 }
