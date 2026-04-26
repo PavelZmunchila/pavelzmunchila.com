@@ -124,6 +124,9 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
         <p class="detail-description">The system simplifies lighting programming and calibration, automates timeline creation, and improves workflows for professionals while making it easier for beginners. Based on advanced audio analysis, automated timelines, and an algorithmic approach to lighting control, it offers a smarter way to program a show.</p>
         <a href="https://4x10.dev" target="_blank" style="font-size:12px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--muted);padding-bottom:1px;letter-spacing:.08em">&#8594; Visit 4x10.dev</a>
       </div>
+      <div class="detail-right">
+        <div id="fourk-media" style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px"></div>
+      </div>
     </div>
   </div>
   <div class="tab-panel" id="tab-contacts">
@@ -248,6 +251,19 @@ fourk.forEach((f,i)=>{
   fgrid.appendChild(img);
 });
 switchTab('projects');
+// 4x10 media grid
+(function(){
+  const files=['Image-0573ad7d-54cd-45a0-a878-8b2f9994c226.gif', 'Image-81d347ca-7134-41d7-9711-1dbe4fed41e4.gif', 'Image-9c804232-1468-4d83-a441-d11cbc197315.gif', 'Image-bafd40ec-1b17-4692-9499-0102b6d6dd2c.gif', 'Image-c7d2b8ad-72d1-4164-b6da-ee997005e0ae.gif', 'Image-d1b5e592-889a-4464-a054-a40ab1e41d34.gif', 'Image-d9d31a43-d129-40cb-99c1-1845f3507ac5.gif', 'Image-d1b5e592-889a-4464-a054-a40ab1e41d34.gif'];
+  const grid=document.getElementById('fourk-media');
+  if(!grid)return;
+  files.forEach(f=>{
+    const img=document.createElement('img');
+    img.src='media/4x10/'+f;
+    img.loading='lazy';
+    img.style.cssText='width:100%;display:block;background:#111';
+    grid.appendChild(img);
+  });
+})();
 </script>
 </body>
 </html>
