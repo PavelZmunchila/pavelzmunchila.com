@@ -51,9 +51,9 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .detail-layout{display:flex;gap:40px;align-items:flex-start}
 .detail-left{width:340px;min-width:340px;flex-shrink:0}
 .detail-right{flex:1;min-width:0}
-.detail-media{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
-.detail-media img{width:100%;display:block;object-fit:cover;aspect-ratio:3/2;background:var(--surface)}
-.detail-media img.span2{grid-column:span 2;aspect-ratio:16/9}
+.detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.detail-media img{width:100%;display:block;background:var(--surface)}
+.detail-media img.span2{grid-column:span 2}
 #tab-4x10{flex-direction:column;padding:48px 52px;gap:20px;overflow-y:auto}
 #tab-4x10 h2{font-size:14px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
 #tab-4x10 p{font-size:12.5px;line-height:1.85;max-width:580px;color:#bbb;margin-bottom:14px}
@@ -204,7 +204,7 @@ function showDetail(type,id){
   const detail=document.getElementById(type+'-detail');
   detail.classList.add('visible');
   const tags=item.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
-  const mediaHTML=item.media.map((src,i)=>'<img class="'+(i===0&&item.media.length>1?'span2':'')+'" src="'+src+'" alt="" loading="lazy" onerror="this.style.background=\'#181818\';this.removeAttribute(\'src\')">').join('');
+  const mediaHTML=item.media.map((src,i)=>'<img class="'+(i===0&&item.media.length>3?'span2':'')+'" src="'+src+'" alt="" loading="lazy" onerror="this.style.background=\'#181818\';this.removeAttribute(\'src\')">').join('');
   detail.innerHTML='<div class="detail-layout"><div class="detail-left"><div class="detail-title">'+item.title+'</div>'+(item.meta?'<div class="detail-meta">'+item.meta+'</div>':'')+'<p class="detail-description">'+item.description+'</p>'+(tags?'<div class="detail-tags">'+tags+'</div>':'')+'</div><div class="detail-right"><div class="detail-media">'+mediaHTML+'</div></div></div>';
   document.getElementById(type+'-content').scrollTop=0;
 }
