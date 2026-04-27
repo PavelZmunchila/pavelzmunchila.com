@@ -51,8 +51,9 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .detail-layout{display:flex;gap:40px;align-items:flex-start}
 .detail-left{width:340px;min-width:340px;flex-shrink:0}
 .detail-right{flex:1;min-width:0}
-.detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;grid-auto-rows:var(--img-h,280px)}
-.detail-media img{width:100%;height:100%;object-fit:cover;display:block;background:var(--surface)}
+.detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.detail-media img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--surface)}
+.detail-media.portrait img{aspect-ratio:2/3}
 
 #tab-4x10{flex-direction:column;padding:48px 52px;gap:20px;overflow-y:auto}
 #tab-4x10 h2{font-size:14px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
@@ -66,20 +67,32 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--border)}
 
-@media (max-width: 768px) {
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
+.hamburger span{display:block;width:22px;height:1px;background:var(--text);transition:all .2s}
+.hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Mobile menu */
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:200;flex-direction:column;justify-content:center;align-items:flex-start;padding:40px 28px}
+.mobile-menu.open{display:flex}
+.mobile-menu-nav{display:flex;flex-direction:column;gap:8px}
+.mobile-menu-nav button{background:none;border:none;cursor:pointer;font-family:var(--font);font-size:22px;font-weight:400;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 0;transition:color .12s}
+.mobile-menu-nav button:hover{color:var(--text)}
+
+@media (max-width: 430px) {
   html,body{overflow:auto}
-  header{flex-direction:column;gap:10px;padding:14px 16px 10px}
-  nav{gap:20px;flex-wrap:wrap}
-  nav button{font-size:11px}
-  .logo-name{font-size:12px}
+  header{flex-direction:row;align-items:center;padding:14px 16px 10px}
+  nav{display:none}
+  .hamburger{display:flex}
   main{position:relative;top:0;bottom:auto;left:0;right:0}
   .tab-panel{height:auto;min-height:100vh}
   #tab-about{flex-direction:column;padding:20px 16px;gap:24px}
-  .about-photo{width:100%;min-width:unset;height:280px}
+  .about-photo{width:100%;min-width:unset;height:260px}
   .about-text{max-width:100%}
-  .about-list li{font-size:11.5px}
   .split-layout{flex-direction:column;height:auto}
-  .split-sidebar{width:100%;min-width:unset;border-right:none;border-bottom:1px solid var(--border);padding:16px 0 8px;overflow-x:auto;white-space:nowrap;display:flex;flex-direction:row;gap:0}
+  .split-sidebar{width:100%;min-width:unset;border-right:none;border-bottom:1px solid var(--border);padding:12px 0 8px;overflow-x:auto;white-space:nowrap;display:flex;flex-direction:row}
   .split-sidebar::-webkit-scrollbar{display:none}
   .split-item{display:inline-block;width:auto;padding:6px 14px;font-size:10px}
   .split-content{overflow-y:auto}
@@ -99,29 +112,36 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
   .contact-label{width:70px;font-size:9px}
   .contact-value a{font-size:12px}
 }
-@media (max-width: 480px) {
-  nav{gap:12px}
-  nav button{font-size:10px}
-  .detail-media{grid-template-columns:1fr 1fr;gap:3px}
-  .grid-view{columns:1}
-  #fourk-media{grid-template-columns:1fr 1fr !important}
-}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo" onclick="switchTab('about')">
+  <div class="logo" onclick="switchTab('about');closeMobileMenu()">
     <div class="logo-name">Pavel Zmunchila</div>
     <div class="logo-role">Stage Designer | Creative Director</div>
   </div>
   <nav>
-    <button id="nav-about" onclick="switchTab('about')">About</button>
-    <button id="nav-projects" onclick="switchTab('projects')">Projects</button>
-    <button id="nav-concepts" onclick="switchTab('concepts')">Concepts</button>
-    <button id="nav-4x10" onclick="switchTab('4x10')">4x10.dev</button>
-    <button id="nav-contacts" onclick="switchTab('contacts')">Contacts</button>
+    <button id="nav-about" onclick="switchTab('about');closeMobileMenu()">About</button>
+    <button id="nav-projects" onclick="switchTab('projects');closeMobileMenu()">Projects</button>
+    <button id="nav-concepts" onclick="switchTab('concepts');closeMobileMenu()">Concepts</button>
+    <button id="nav-4x10" onclick="switchTab('4x10');closeMobileMenu()">4x10.dev</button>
+    <button id="nav-contacts" onclick="switchTab('contacts');closeMobileMenu()">Contacts</button>
   </nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-nav">
+    <button onclick="switchTab('about');closeMobileMenu()">About</button>
+    <button onclick="switchTab('projects');closeMobileMenu()">Projects</button>
+    <button onclick="switchTab('concepts');closeMobileMenu()">Concepts</button>
+    <button onclick="switchTab('4x10');closeMobileMenu()">4x10.dev</button>
+    <button onclick="switchTab('contacts');closeMobileMenu()">Contacts</button>
+  </div>
+</div>
 <main>
   <div class="tab-panel" id="tab-about">
     <img class="about-photo" src="media/about/ABOUT%20Pavel%20Zmunchila.webp" alt="Pavel Zmunchila" onerror="this.style.background='#1a1a1a';this.removeAttribute('src')">
@@ -247,7 +267,7 @@ function showDetail(type,id){
   const detail=document.getElementById(type+'-detail');
   detail.classList.add('visible');
   const mediaEl=detail.querySelector('.detail-media');
-  if(mediaEl)mediaEl.style.setProperty('--img-h',(item.imgH||280)+'px');
+  if(mediaEl){mediaEl.classList.toggle('portrait',item.id==='ise');}
   const tags=item.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
   const mediaHTML=item.media.map(src=>'<img src="'+src+'" alt="" loading="lazy" onerror="this.style.background=\'#181818\'">').join('');
   detail.innerHTML='<div class="detail-layout"><div class="detail-left"><div class="detail-title">'+item.title+'</div>'+(item.meta?'<div class="detail-meta">'+item.meta+'</div>':'')+'<p class="detail-description">'+item.description+'</p>'+(tags?'<div class="detail-tags">'+tags+'</div>':'')+'</div><div class="detail-right"><div class="detail-media">'+mediaHTML+'</div></div></div>';
@@ -269,6 +289,17 @@ function switchTab(tab){
 
 document.getElementById('nav-projects').addEventListener('click',()=>showGrid('projects'));
 document.getElementById('nav-concepts').addEventListener('click',()=>showGrid('concepts'));
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobile-menu');
+  const btn=document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('active');
+}
+function closeMobileMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
 buildSection('projects',PROJECTS);
 buildSection('concepts',CONCEPTS);
 // Build 4x10 media grid
