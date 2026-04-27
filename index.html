@@ -34,10 +34,10 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .split-item{display:block;width:100%;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:11.5px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 22px;line-height:1.5;transition:color .1s}
 .split-item:hover,.split-item.active{color:var(--text)}
 .split-content{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.grid-view{padding:28px 28px 60px;columns:3;column-gap:5px}
+.grid-view{padding:20px 20px 40px;columns:4;column-gap:5px}
 .grid-view.hidden{display:none}
 .grid-item{break-inside:avoid;margin-bottom:5px;cursor:pointer;position:relative;overflow:hidden;background:var(--surface)}
-.grid-item img{width:100%;display:block;transition:opacity .2s;aspect-ratio:4/3;object-fit:cover}
+.grid-item img{width:100%;display:block;transition:opacity .2s;aspect-ratio:2/3;object-fit:cover}
 .grid-item:hover img{opacity:.7}
 .grid-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.9));padding:24px 10px 8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .2s}
 .grid-item:hover .grid-label{opacity:1}
@@ -50,7 +50,7 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 .tag{padding:4px 10px;border:1px solid #282828;font-size:10px;letter-spacing:.08em;color:var(--muted)}
 .detail-layout{display:flex;gap:40px;align-items:flex-start}
 .detail-left{width:340px;min-width:340px;flex-shrink:0}
-.detail-right{flex:1;min-width:0}
+.detail-right{flex:1;min-width:0;max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:none}
 .detail-media{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
 .detail-media img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--surface)}
 .detail-media.portrait img{aspect-ratio:2/3}
@@ -68,14 +68,14 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 ::-webkit-scrollbar-thumb{background:var(--border)}
 
 /* Hamburger */
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto;position:relative;z-index:300}
 .hamburger span{display:block;width:22px;height:1px;background:var(--text);transition:all .2s}
 .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .hamburger.active span:nth-child(2){opacity:0}
 .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 /* Mobile menu */
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:200;flex-direction:column;justify-content:center;align-items:flex-start;padding:40px 28px}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:250;flex-direction:column;justify-content:center;align-items:flex-start;padding:40px 28px}
 .mobile-menu.open{display:flex}
 .mobile-menu-nav{display:flex;flex-direction:column;gap:8px}
 .mobile-menu-nav button{background:none;border:none;cursor:pointer;font-family:var(--font);font-size:22px;font-weight:400;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:8px 0;transition:color .12s}
@@ -112,6 +112,10 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
   .contact-label{width:70px;font-size:9px}
   .contact-value a{font-size:12px}
 }
+
+.back-btn{display:none;background:none;border:none;color:var(--muted);font-family:var(--font);font-size:11px;letter-spacing:.1em;cursor:pointer;padding:0 0 16px 0;text-transform:uppercase}
+.back-btn:hover{color:var(--text)}
+@media(max-width:430px){.back-btn{display:block}}
 </style>
 </head>
 <body>
@@ -136,8 +140,8 @@ main{position:fixed;top:58px;bottom:0;left:0;right:0}
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-nav">
     <button onclick="switchTab('about');closeMobileMenu()">About</button>
-    <button onclick="switchTab('projects');closeMobileMenu()">Projects</button>
-    <button onclick="switchTab('concepts');closeMobileMenu()">Concepts</button>
+    <button onclick="switchTab('projects');showGrid('projects');closeMobileMenu()">Projects</button>
+    <button onclick="switchTab('concepts');showGrid('concepts');closeMobileMenu()">Concepts</button>
     <button onclick="switchTab('4x10');closeMobileMenu()">4x10.dev</button>
     <button onclick="switchTab('contacts');closeMobileMenu()">Contacts</button>
   </div>
@@ -266,6 +270,12 @@ function showDetail(type,id){
   document.getElementById(type+'-grid').classList.add('hidden');
   const detail=document.getElementById(type+'-detail');
   detail.classList.add('visible');
+  // Add back button for mobile
+  const backBtn=document.createElement('button');
+  backBtn.className='back-btn';
+  backBtn.textContent='← Back';
+  backBtn.onclick=()=>showGrid(type);
+  detail.insertBefore(backBtn,detail.firstChild);
   const mediaEl=detail.querySelector('.detail-media');
   if(mediaEl){mediaEl.classList.toggle('portrait',item.id==='ise');}
   const tags=item.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
